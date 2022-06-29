@@ -25,3 +25,5 @@ function foo1(num1, num2) {
 foo1.apply("apply", [20, 30])
 // (method)Function.call(this:Function,thisArg:any,...argArray?:any[]):any
 foo1.call("call", 20, 30)
+
+// call和apply在执行函数时，是可以明确的绑定this，这个绑定规则称为显氏绑定
