@@ -10,3 +10,4 @@ var p1 = new Person("kobe", 18)
 console.log(p1.name, p1.age);
 
 var p2 = new Person("James", 20)
+
