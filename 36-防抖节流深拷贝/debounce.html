@@ -23,28 +23,49 @@
         let counter = 0
 
         const inputChange = function (event) {
-            console.log(`发送了${++counter}次请求`, this, event.target.value);
+            console.log(`发送了${++counter}次请求`, this, event?.target.value);
+            return '返回值'
         }
         // 防抖处理
+        // 使用第三方库
         // inputEl.oninput = _.debounce(inputChange, 5000)
-        const debounceChange = debounce(inputChange, 3000, true, (res) => {
-            console.log(`返回值：${res}`);
+        // 01-debounce-v1-基本实现
+        // inputEl.oninput = debounce(inputChange, 1000)
+        // 02-debounce-v2-立即执行
+        // inputEl.oninput = debounce(inputChange, 1000, true)
+        // 03-debounce-v3-取消功能
+        // const debounceChange = debounce(inputChange, 3000, true)
+        // inputEl.oninput = debounceChange
+        // const btnEl = document.querySelector(".btn")
+        // btnEl.onclick = function () {
+        //     debounceChange.cancel()
+        // }
+        // 04-debounce-v4-函数返回值
+        // const debounceChange = debounce(inputChange, 3000, true, (res) => {
+        //     console.log(`真正的返回值${res}`);
+        // })
+        // inputEl.oninput = debounceChange
+        // const btnEl = document.querySelector(".btn")
+        // btnEl.onclick = function () {
+        //     debounceChange.cancel()
+        // }
+        // 04-debounce-v4-函数返回值-promise
+        const debounceChange = debounce(inputChange, 3000, false, (res) => {
+            console.log("拿到真正执行函数的返回值:", res)
         })
         const tempCallback = () => {
-            debounceChange().then((res) => {
-                console.log(`返回值：${res}`)
+            debounceChange().then(res => {
+                console.log("Promise的返回值结果:", res)
             })
         }
         inputEl.oninput = tempCallback
 
-        const btnEl = document.querySelector('.btn')
-
+        const btnEl = document.querySelector(".btn")
         btnEl.onclick = function () {
             debounceChange.cancel()
         }
 
-        // 节流处理
-        // inputEl.oninput = _.throttle(inputChange, 5000)
+
 
     </script>
 </body>

@@ -1,5 +1,9 @@
 let activeReactiveFn = null
-
+/**
+ * Depend优化
+ * 1.depend方法
+ * 2.使用Set来保存依赖函数，而不是数组
+ */
 class Depend {
     constructor() {
         this.reactiveFn = new Set()
@@ -64,7 +68,7 @@ function reactive(obj) {
 
             Reflect.set(target, key, newValue, receiver)
             const depend = getDepend(target, key)
-            depend.notify
+            depend.notify()
         }
     })
 }

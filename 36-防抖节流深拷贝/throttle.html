@@ -11,7 +11,7 @@
 <body>
     <input type="text">
     <!-- <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script> -->
-    <script src="./06-throttle-v1-基本实现.js"></script>
+    <!-- <script src="./06-throttle-v1-基本实现.js"></script> -->
     <button class="btn">取消</button>
 
     <script>
@@ -25,6 +25,8 @@
 
         // 节流处理
         // inputEl.oninput = _.throttle(inputChange, 5000)
+        // 06-throttle-v1-基本实现
+        inputEl.oninput = throttle(inputChange, 1000)
 
     </script>
 </body>
