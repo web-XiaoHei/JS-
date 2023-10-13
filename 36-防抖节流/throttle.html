@@ -12,10 +12,15 @@
     <input type="text">
     <!-- <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script> -->
     <!-- <script src="./06-throttle-v1-基本实现.js"></script> -->
+    <!-- <script src="./07-throttle-v2-leading实现.js"></script> -->
+    <!-- <script src="./08-throttle-v3-trailing实现.js"></script> -->
+    <script src="./09-throttle-v4-取消功能.js"></script>
+
     <button class="btn">取消</button>
 
     <script>
         const inputEl = document.querySelector("input")
+        const btnEl = document.querySelector('.btn')
         let counter = 0
 
         const inputChange = function (event) {
@@ -26,8 +31,14 @@
         // 节流处理
         // inputEl.oninput = _.throttle(inputChange, 5000)
         // 06-throttle-v1-基本实现
-        inputEl.oninput = throttle(inputChange, 1000)
-
+        // inputEl.oninput = throttle(inputChange, 1000)
+        // 07-throttle-v2-leading实现
+        const _throttle = throttle(inputChange, 1000, { leading: false, trailing: true })
+        inputEl.oninput = _throttle
+        // 取消功能
+        btnEl.onclick = function () {
+            _throttle.cancel()
+        }
     </script>
 </body>
 
